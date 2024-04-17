@@ -301,10 +301,10 @@ class IdTokenResult extends JsObjectWrapper<auth_interop.IdTokenResultImpl> {
 
   /// The entire payload claims of the ID token including the standard reserved
   /// claims as well as the custom claims.
-  Map<String, dynamic>? get claims {
-    final claims = jsObject.claims.dartify();
-    return claims == null ? null : (claims as Map).cast<String, dynamic>();
-  }
+  Map<String, dynamic>? get claims =>
+    (jsObject.claims.dartify() as Map<Object?, Object?>?)
+          ?.cast<String, dynamic>();
+  
 
   /// The ID token expiration time.
   DateTime get expirationTime => parseHttpDate(jsObject.expirationTime.toDart);
